@@ -333,6 +333,7 @@ align-items:center;
 justify-content:center;
 color:white;
 cursor:pointer;
+z-index:30;
 }
 
 .nav-controls{
@@ -947,11 +948,13 @@ removeFirstInteractionListeners();
 
 function removeFirstInteractionListeners(){
 document.removeEventListener("click",startMusicOnFirstInteraction);
+document.removeEventListener("mousedown",startMusicOnFirstInteraction);
 document.removeEventListener("touchstart",startMusicOnFirstInteraction);
 document.removeEventListener("keydown",startMusicOnFirstInteraction);
 }
 
 document.addEventListener("click",startMusicOnFirstInteraction,{passive:true});
+document.addEventListener("mousedown",startMusicOnFirstInteraction);
 document.addEventListener("touchstart",startMusicOnFirstInteraction,{passive:true});
 document.addEventListener("keydown",startMusicOnFirstInteraction);
 window.addEventListener("load",tryAutoStartMusic);
