@@ -677,7 +677,7 @@ font-size:18px;
 
 <div class="music" onclick="toggleMusic()" aria-label="Toggle music" title="Play music">🎵</div>
 
-<audio id="song" loop preload="metadata">
+<audio id="song" loop preload="auto" autoplay playsinline>
 <source src="music.mp3" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
@@ -902,7 +902,7 @@ function updateMusicButton(){
 if(!music || !musicBtn) return;
 if(music.paused){
 musicBtn.innerText="🎵";
-musicBtn.title="Play music";
+musicBtn.title="Tap to play music";
 }else{
 musicBtn.innerText="⏸";
 musicBtn.title="Pause music";
@@ -916,15 +916,36 @@ music.addEventListener("pause",updateMusicButton);
 music.addEventListener("error",(e)=>{console.log("Audio error event:",e);});
 }
 
+function tryAutoStartMusic(){
+if(!music || !music.paused) return;
+const playPromise=music.play();
+if(playPromise!==undefined){
+playPromise.then(()=>{
+updateMusicButton();
+}).catch((error)=>{
+console.log("Autoplay blocked by browser:",error);
+updateMusicButton();
+});
+}
+}
+
 // Mobile browsers usually block autoplay until first user interaction.
 function startMusicOnFirstInteraction(){
 if(!music || !music.paused) return;
 let playPromise=music.play();
 if(playPromise!==undefined){
-playPromise.catch(error=>{
-console.log("Auto-play blocked (expected):",error);
+playPromise.then(()=>{
+updateMusicButton();
+removeFirstInteractionListeners();
+}).catch(error=>{
+console.log("First interaction play failed:",error);
 });
+return;
 }
+removeFirstInteractionListeners();
+}
+
+function removeFirstInteractionListeners(){
 document.removeEventListener("click",startMusicOnFirstInteraction);
 document.removeEventListener("touchstart",startMusicOnFirstInteraction);
 document.removeEventListener("keydown",startMusicOnFirstInteraction);
@@ -933,6 +954,8 @@ document.removeEventListener("keydown",startMusicOnFirstInteraction);
 document.addEventListener("click",startMusicOnFirstInteraction,{passive:true});
 document.addEventListener("touchstart",startMusicOnFirstInteraction,{passive:true});
 document.addEventListener("keydown",startMusicOnFirstInteraction);
+window.addEventListener("load",tryAutoStartMusic);
+window.addEventListener("pageshow",tryAutoStartMusic);
 
 updateNav();
 updateMusicButton();
