@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Women's Day ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+background:linear-gradient(135deg,#ffd6e7,#e8c3ff,#ffe5d0);
+overflow:hidden;
+text-align:center;
+color:#333;
+}
+
+/* NETFLIX INTRO */
+
+#intro{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+animation:introFade 4s forwards;
+}
+
+.netflix{
+font-size:70px;
+color:red;
+letter-spacing:10px;
+font-weight:700;
+opacity:0;
+animation:netflix 3s forwards;
+}
+
+@keyframes netflix{
+0%{opacity:0;transform:scale(0.5)}
+50%{opacity:1;transform:scale(1.2)}
+100%{opacity:1;transform:scale(1)}
+}
+
+@keyframes introFade{
+0%,85%{opacity:1}
+100%{opacity:0;visibility:hidden}
+}
+
+/* PAGES */
+
+.page{
+position:fixed;
+width:100%;
+height:100vh;
+top:0;
+left:100%;
+padding:40px 20px;
+box-sizing:border-box;
+transition:left 0.6s ease;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:12px;
+z-index:1;
+}
+
+.page.active{
+left:0;
+z-index:2;
+}
+
+.page.prev{
+left:-100%;
+z-index:0;
+}
+
+.page p,
+.page h1,
+.page h2,
+.page .cards,
+.page .polaroids,
+.page .letter{
+max-width:min(92vw, 760px);
+}
+
+h1{
+font-family:Pacifico;
+font-size:38px;
+}
+
+button{
+padding:14px 24px;
+border:none;
+border-radius:30px;
+font-size:16px;
+background:#ff6fa5;
+color:white;
+cursor:pointer;
+margin:8px;
+}
+
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:15px;
+width:min(92vw,400px);
+max-width:400px;
+margin:auto;
+}
+
+.card{
+perspective:1000px;
+}
+
+.card-inner{
+position:relative;
+width:100%;
+height:120px;
+transition:transform 0.6s;
+transform-style:preserve-3d;
+}
+
+.card:hover .card-inner{
+transform:rotateY(180deg);
+}
+
+.card-front,.card-back{
+position:absolute;
+width:100%;
+height:100%;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:white;
+backface-visibility:hidden;
+padding:10px;
+}
+
+.card-back{
+transform:rotateY(180deg);
+background:#ff9ecb;
+color:white;
+}
+
+/* POLAROIDS */
+
+.polaroids{
+position:relative;
+width:320px;
+height:300px;
+margin:auto;
+}
+
+.photo-hint{
+display:inline-block;
+margin:0 0 14px;
+padding:8px 14px;
+background:rgba(255,255,255,0.85);
+border:1px dashed #ff6fa5;
+border-radius:20px;
+font-weight:600;
+font-size:14px;
+animation:hintPulse 1.8s ease-in-out infinite;
+}
+
+.polaroid{
+position:absolute;
+width:150px;
+background:white;
+padding:10px 10px 30px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+border-radius:6px;
+animation:drop 1s ease forwards;
+opacity:0;
+cursor:pointer;
+transition:transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.polaroid img{
+width:100%;
+border-radius:4px;
+height:160px;
+object-fit:cover;
+display:block;
+}
+
+.polaroid .caption{
+margin-top:8px;
+font-size:12px;
+font-weight:600;
+color:#5a4a52;
+letter-spacing:0.3px;
+}
+
+.polaroid:hover{
+box-shadow:0 16px 26px rgba(0,0,0,0.26);
+}
+
+.polaroid:nth-child(1){
+left:10px;
+top:0;
+transform:rotate(-8deg);
+animation-delay:0.5s;
+}
+
+.polaroid:nth-child(2){
+left:120px;
+top:20px;
+transform:rotate(6deg);
+animation-delay:1s;
+}
+
+.polaroid:nth-child(3){
+left:40px;
+top:120px;
+transform:rotate(-5deg);
+animation-delay:1.5s;
+}
+
+.polaroid:nth-child(4){
+left:160px;
+top:140px;
+transform:rotate(8deg);
+animation-delay:2s;
+}
+
+@keyframes drop{
+0%{
+transform:translateY(-200px) scale(0.7);
+opacity:0;
+}
+100%{
+opacity:1;
+}
+}
+
+@keyframes hintPulse{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.04);}
+}
+
+/* HEART BACKGROUND */
+
+.hearts{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+perspective:800px;
+}
+
+.heart{
+position:absolute;
+font-size:22px;
+animation:float3D 6s linear infinite;
+transform-style:preserve-3d;
+}
+
+@keyframes float3D{
+0%{
+transform:translateY(100vh) rotateY(0deg) scale(0.6);
+opacity:0;
+}
+20%{opacity:1}
+100%{
+transform:translateY(-10vh) rotateY(360deg) scale(1.2);
+opacity:0;
+}
+}
+
+/* ENVELOPE */
+
+.envelope{
+width:200px;
+height:120px;
+background:#ff8fb1;
+margin:auto;
+position:relative;
+border-radius:8px;
+cursor:pointer;
+}
+
+.envelope:before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+border-left:100px solid transparent;
+border-right:100px solid transparent;
+border-bottom:60px solid #ff6fa5;
+}
+
+.letter{
+background:white;
+padding:20px;
+border-radius:10px;
+max-width:350px;
+margin:20px auto;
+min-height:120px;
+display:none;
+}
+
+/* MUSIC */
+
+.music{
+position:fixed;
+bottom:20px;
+right:20px;
+font-size:22px;
+background:#ff6fa5;
+width:50px;
+height:50px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+cursor:pointer;
+}
+
+.nav-controls{
+position:fixed;
+left:50%;
+bottom:20px;
+transform:translateX(-50%);
+display:flex;
+gap:10px;
+z-index:10;
+}
+
+.nav-controls button{
+min-width:100px;
+padding:10px 16px;
+font-size:15px;
+}
+
+.nav-controls button:disabled{
+opacity:0.45;
+cursor:not-allowed;
+}
+
+.nav-status{
+position:fixed;
+left:50%;
+bottom:68px;
+transform:translateX(-50%);
+font-weight:500;
+background:rgba(255,255,255,0.8);
+padding:6px 12px;
+border-radius:20px;
+z-index:10;
+}
+
+.photo-modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.7);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9998;
+padding:20px;
+}
+
+.photo-modal.show{
+display:flex;
+}
+
+.photo-frame{
+position:relative;
+max-width:min(92vw,520px);
+width:100%;
+background:white;
+padding:14px 14px 34px;
+border-radius:8px;
+box-shadow:0 24px 44px rgba(0,0,0,0.35);
+transform:rotate(-2deg);
+animation:popIn 0.25s ease;
+}
+
+.photo-frame img{
+width:100%;
+border-radius:6px;
+display:block;
+max-height:68vh;
+object-fit:cover;
+}
+
+.photo-caption{
+margin-top:10px;
+font-weight:700;
+font-size:14px;
+}
+
+.close-photo{
+position:absolute;
+top:-12px;
+right:-12px;
+width:34px;
+height:34px;
+border-radius:50%;
+padding:0;
+font-size:20px;
+line-height:1;
+background:#ff4f8f;
+}
+
+@keyframes popIn{
+from{transform:scale(0.85) rotate(-4deg);opacity:0;}
+to{transform:scale(1) rotate(-2deg);opacity:1;}
+}
+
+@media (max-width:768px){
+body{
+overflow:hidden;
+}
+
+.page{
+height:100dvh;
+padding:20px 16px 100px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:10px;
+overflow:hidden;
+}
+
+.page h1{
+font-size:38px;
+margin:0;
+}
+
+.page h2{
+font-size:32px;
+margin:0;
+}
+
+.page p{
+margin:0;
+max-width:92%;
+}
+
+button{
+padding:12px 18px;
+font-size:15px;
+}
+
+.cards{
+width:min(90vw,330px);
+max-width:320px;
+gap:10px;
+}
+
+.card-inner{
+height:102px;
+}
+
+.polaroids{
+width:286px;
+height:274px;
+}
+
+.polaroid{
+width:132px;
+padding:8px 8px 24px;
+}
+
+.polaroid img{
+height:140px;
+}
+
+.photo-hint{
+font-size:13px;
+padding:7px 12px;
+}
+
+.nav-status{
+bottom:74px;
+font-size:13px;
+padding:5px 10px;
+}
+
+.nav-controls{
+bottom:22px;
+gap:8px;
+}
+
+.nav-controls button{
+min-width:122px;
+padding:10px 14px;
+font-size:14px;
+}
+
+.music{
+top:14px;
+right:12px;
+bottom:auto;
+width:42px;
+height:42px;
+font-size:18px;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="intro">
+<h1 class="netflix">LOVE</h1>
+</div>
+
+<div class="hearts" id="hearts"></div>
+
+<!-- PAGE 1 -->
+
+<div class="page active">
+
+<h1>Happy Women's Day 👑</h1>
+
+<p>You deserve a whole website, not just a text message.</p>
+
+<button onclick="loveExplosion()">Press if you are cutest 😌</button>
+
+<p id="loveMsg"></p>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page">
+
+<h2>Reasons I Love You 💖</h2>
+
+<div class="cards">
+
+<div class="card">
+<div class="card-inner">
+<div class="card-front">Tap me</div>
+<div class="card-back">Your smile is my daily WiFi</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-inner">
+<div class="card-front">Tap me</div>
+<div class="card-back">You are 90% cute and 10% dangerous</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-inner">
+<div class="card-front">Tap me</div>
+<div class="card-back">You make my good days best</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-inner">
+<div class="card-front">Tap me</div>
+<div class="card-back">Your hugs are my safe place</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page">
+
+<h2>Our Memories 📸</h2>
+
+<p class="photo-hint">Click any photo to view it clearly with caption 👇</p>
+
+<div class="polaroids">
+
+<div class="polaroid" tabindex="0" data-caption="That day felt magical ✨">
+<img src="img1.jpeg" alt="Memory photo 1">
+<p class="caption">That day felt magical ✨</p>
+</div>
+
+<div class="polaroid" tabindex="0" data-caption="You, me, and peaceful moments 🌲">
+<img src="img2.jpeg" alt="Memory photo 2">
+<p class="caption">You, me, and peaceful moments 🌲</p>
+</div>
+
+<div class="polaroid" tabindex="0" data-caption="Day lights, happy vibes 🌃">
+<img src="img3.jpeg" alt="Memory photo 3">
+<p class="caption">Day lights, happy vibes 🌃</p>
+</div>
+
+<div class="polaroid" tabindex="0" data-caption="One of very first photos (memories) 🐾">
+<img src="img4.jpeg" alt="Memory photo 4">
+<p class="caption">One of very first photos (memories) 🐾</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page">
+
+<h2>Mini Love Quiz 💘</h2>
+
+<p>Who loves you the most?</p>
+
+<button onclick="quiz()">A) Me</button>
+<button onclick="quiz()">B) Obviously me</button>
+<button onclick="quiz()">C) Still me</button>
+<button onclick="quiz()">D) All of the above</button>
+
+<p id="quizResult"></p>
+
+</div>
+
+<!-- PAGE 5 -->
+
+<div class="page">
+
+<h2>💌 Tap the Envelope</h2>
+
+<div class="envelope" onclick="openLetter()"></div>
+
+<div class="letter" id="letter"></div>
+
+</div>
+
+<!-- PAGE 6 -->
+
+<div class="page">
+
+<h2>Final Message 💖</h2>
+
+<p>You are special every single day ❤️</p>
+
+<button onclick="finale()">Tap for Surprise</button>
+
+</div>
+
+<div class="nav-status" id="navStatus">Page 1 of 6</div>
+
+<div class="nav-controls">
+<button id="prevBtn" onclick="prev()">⬅ Previous</button>
+<button id="nextBtn" onclick="next()">Next ➡</button>
+</div>
+
+<div class="photo-modal" id="photoModal">
+<div class="photo-frame">
+<button class="close-photo" id="closePhoto" aria-label="Close photo">×</button>
+<img id="modalImg" src="" alt="Selected memory photo">
+<p class="photo-caption" id="modalCaption"></p>
+</div>
+</div>
+
+<div class="music" onclick="toggleMusic()" aria-label="Toggle music" title="Play music">🎵</div>
+
+<audio id="song" loop preload="metadata">
+<source src="music.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+<script>
+
+let pages=document.querySelectorAll(".page");
+let index=0;
+let navStatus=document.getElementById("navStatus");
+let prevBtn=document.getElementById("prevBtn");
+let nextBtn=document.getElementById("nextBtn");
+let photoModal=document.getElementById("photoModal");
+let modalImg=document.getElementById("modalImg");
+let modalCaption=document.getElementById("modalCaption");
+let closePhoto=document.getElementById("closePhoto");
+let music=document.getElementById("song");
+let musicBtn=document.querySelector(".music");
+
+function updateNav(){
+if(navStatus) navStatus.innerText=`Page ${index+1} of ${pages.length}`;
+if(prevBtn) prevBtn.disabled=index===0;
+if(nextBtn) nextBtn.disabled=index===pages.length-1;
+}
+
+function showPage(i){
+
+pages.forEach(p=>{
+p.classList.remove("active");
+p.classList.remove("prev");
+});
+
+if(i>0) pages[i-1].classList.add("prev");
+
+pages[i].classList.add("active");
+
+updateNav();
+
+}
+
+function next(){
+if(index<pages.length-1){
+index++;
+showPage(index);
+}
+}
+
+function prev(){
+if(index>0){
+index--;
+showPage(index);
+}
+}
+
+let touchStartX=0;
+let touchStartY=0;
+
+document.addEventListener("touchstart",e=>{
+if(e.touches.length!==1) return;
+touchStartX=e.touches[0].clientX;
+touchStartY=e.touches[0].clientY;
+},{passive:true});
+
+document.addEventListener("touchend",e=>{
+if(e.changedTouches.length!==1) return;
+if(photoModal && photoModal.classList.contains("show")) return;
+
+let target=e.target;
+if(target && target.closest && target.closest("button,.card,.polaroid,.envelope,.music,.photo-frame,.nav-controls")) return;
+
+let endX=e.changedTouches[0].clientX;
+let endY=e.changedTouches[0].clientY;
+let deltaX=endX-touchStartX;
+let deltaY=endY-touchStartY;
+
+// Only change pages on intentional horizontal swipes.
+if(Math.abs(deltaX)<60) return;
+if(Math.abs(deltaX)<=Math.abs(deltaY)) return;
+
+if(deltaX<0) next();
+if(deltaX>0) prev();
+
+},{passive:true});
+
+document.addEventListener("keydown",e=>{
+if(e.key==="ArrowRight") next();
+if(e.key==="ArrowLeft") prev();
+if(e.key==="Escape") closePhotoModal();
+});
+
+/* PHOTO VIEWER */
+
+function openPhotoModal(polaroid){
+let img=polaroid.querySelector("img");
+if(!img || !photoModal || !modalImg || !modalCaption) return;
+
+modalImg.src=img.src;
+modalImg.alt=img.alt;
+modalCaption.innerText=polaroid.dataset.caption || "Our beautiful memory";
+photoModal.classList.add("show");
+}
+
+function closePhotoModal(){
+if(photoModal) photoModal.classList.remove("show");
+}
+
+document.querySelectorAll(".polaroid").forEach((polaroid)=>{
+polaroid.addEventListener("click",()=>openPhotoModal(polaroid));
+polaroid.addEventListener("keydown",(e)=>{
+if(e.key==="Enter" || e.key===" "){
+e.preventDefault();
+openPhotoModal(polaroid);
+}
+});
+});
+
+closePhoto?.addEventListener("click",closePhotoModal);
+photoModal?.addEventListener("click",(e)=>{
+if(e.target===photoModal) closePhotoModal();
+});
+
+/* QUIZ */
+
+function quiz(){
+document.getElementById("quizResult").innerText="Correct! All of them 😌💖";
+}
+
+/* LETTER */
+
+function openLetter(){
+
+let text=`My love,
+
+Idk how to put into words how much you mean to me,
+ but I hope this little website can show a glimpse of it. 
+
+you are so important person in my life ,
+and I cant imagine my world without you.
+
+Thank you for being the amazing woman you are.
+
+Happy Women's Day ❤️`;
+
+let box=document.getElementById("letter");
+
+box.style.display="block";
+box.innerHTML="";
+
+let i=0;
+
+let typing=setInterval(()=>{
+
+box.innerHTML+=text.charAt(i);
+
+i++;
+
+if(i>=text.length) clearInterval(typing);
+
+},40);
+
+}
+
+/* HEARTS */
+
+function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+heart.innerHTML="💖";
+
+heart.style.left=Math.random()*100+"%";
+heart.style.fontSize=(15+Math.random()*25)+"px";
+heart.style.animationDuration=(4+Math.random()*4)+"s";
+
+document.getElementById("hearts").appendChild(heart);
+
+setTimeout(()=>heart.remove(),7000);
+
+}
+
+setInterval(createHeart,700);
+
+function loveExplosion(){
+
+document.getElementById("loveMsg").innerText="Correct answer detected 💘";
+
+for(let i=0;i<25;i++) createHeart();
+
+}
+
+function finale(){
+
+for(let i=0;i<120;i++) createHeart();
+
+}
+
+/* MUSIC */
+
+function toggleMusic(){
+if(!music) return;
+
+try{
+if(music.paused){
+let playPromise=music.play();
+if(playPromise!==undefined){
+playPromise.catch(error=>{
+console.log("Play failed:",error);
+music.volume=0.5;
+});
+}else{
+music.volume=0.5;
+}
+}else{
+music.pause();
+}
+}catch(e){
+console.log("Audio error:",e);
+}
+}
+
+function updateMusicButton(){
+if(!music || !musicBtn) return;
+if(music.paused){
+musicBtn.innerText="🎵";
+musicBtn.title="Play music";
+}else{
+musicBtn.innerText="⏸";
+musicBtn.title="Pause music";
+}
+}
+
+if(music){
+music.volume=0.5;
+music.addEventListener("play",updateMusicButton);
+music.addEventListener("pause",updateMusicButton);
+music.addEventListener("error",(e)=>{console.log("Audio error event:",e);});
+}
+
+// Mobile browsers usually block autoplay until first user interaction.
+function startMusicOnFirstInteraction(){
+if(!music || !music.paused) return;
+let playPromise=music.play();
+if(playPromise!==undefined){
+playPromise.catch(error=>{
+console.log("Auto-play blocked (expected):",error);
+});
+}
+document.removeEventListener("click",startMusicOnFirstInteraction);
+document.removeEventListener("touchstart",startMusicOnFirstInteraction);
+document.removeEventListener("keydown",startMusicOnFirstInteraction);
+}
+
+document.addEventListener("click",startMusicOnFirstInteraction,{passive:true});
+document.addEventListener("touchstart",startMusicOnFirstInteraction,{passive:true});
+document.addEventListener("keydown",startMusicOnFirstInteraction);
+
+updateNav();
+updateMusicButton();
+
+</script>
+
+</body>
+</html>
